@@ -10,19 +10,16 @@
       active-text-color="#ffd04b"
       router
     >
-      <el-menu-item index="/admin/getall">用户管理</el-menu-item>
-      <el-menu-item index="/admin/getuser">用户管理</el-menu-item>
+      <el-menu-item index="/admin/getall">账号管理</el-menu-item>
+      <el-menu-item index="/admin/getuser">用户查看</el-menu-item>
       <el-submenu index="2">
-        <template slot="title">我的工作台</template>
-        <el-menu-item index="2-1">选项1</el-menu-item>
-        <el-menu-item index="2-2">选项2</el-menu-item>
-        <el-menu-item index="2-3">选项3</el-menu-item>
-        <el-submenu index="2-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="2-4-1">选项1</el-menu-item>
-          <el-menu-item index="2-4-2">选项2</el-menu-item>
-          <el-menu-item index="2-4-3">选项3</el-menu-item>
-        </el-submenu>
+        <template slot="title">菜单管理</template>
+        <el-menu-item index="/admin/menu/getmenus/0">主食</el-menu-item>
+        <el-menu-item index="/admin/menu/getmenus/1">菜品</el-menu-item>
+        <el-menu-item index="/admin/menu/getmenus/2">特色菜</el-menu-item>
+        <el-menu-item index="/admin/menu/getmenus/3">饮料</el-menu-item>
+        <el-menu-item index="/admin/menu/getmenus/4">酒水</el-menu-item>
+        <el-menu-item index="/admin/menu/add">添加...</el-menu-item>
       </el-submenu>
       <el-menu-item index="3" disabled>消息中心</el-menu-item>
       <el-menu-item index="4"

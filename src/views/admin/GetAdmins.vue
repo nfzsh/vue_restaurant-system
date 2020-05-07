@@ -3,28 +3,34 @@
     <el-table :data="admins" style="width: 100%" stripe fit>
       <el-table-column fixed prop="id" sortable label="编号"> </el-table-column>
       <el-table-column prop="name" sortable label="姓名"> </el-table-column>
-      <el-table-column prop="authority" :formatter="auth" sortable label="权限">
+      <el-table-column :formatter="auth" sortable label="权限">
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button
             @click.native.prevent="update(scope.$index, admins)"
             size="mini"
-            >编辑</el-button
+            class="el-icon-edit"
+            >修改</el-button
           >
           <el-button
             @click.native.prevent="deleteRow(scope.$index, admins)"
             type="danger"
             size="mini"
+            class="el-icon-delete"
           >
-            移除
+            删除
           </el-button>
         </template>
       </el-table-column>
     </el-table>
 
-    <el-button type="text" @click="add()" style="width: 100%"
-      >点击添加账号信息</el-button
+    <el-button
+      type="text"
+      @click="add()"
+      style="width: 100%"
+      class="el-icon-circle-plus-outline"
+      >新建用户</el-button
     >
 
     <el-dialog title="用户信息" :visible.sync="dialogFormVisible">

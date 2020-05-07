@@ -27,6 +27,16 @@ let adminRoutes = [
     props: true,
     path: "/admin/getuser",
     component: () => import("@/views/admin/GetUser.vue")
+  },
+  {
+    props: true,
+    path: "/admin/menu/getmenus/:type",
+    component: () => import("@/views/admin/menu.vue")
+  },
+  {
+    props: true,
+    path: "/admin/menu/add",
+    component: () => import("@/views/admin/addMenu.vue")
   }
 ];
 const user1Role = "bb63e5f7e0f2ffae845c";

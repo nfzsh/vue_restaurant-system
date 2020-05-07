@@ -14,7 +14,9 @@ const myStates = {
     password: null,
     authority: null
   },
-  admins: []
+  admins: [],
+  users: [],
+  menus: []
 };
 const myMutations = {
   [types.LOGIN](state, data) {
@@ -37,6 +39,21 @@ const myMutations = {
   },
   [types.UPDATE_ADMIN](state, data) {
     state.admins = data;
+  },
+  [types.GET_ALL_USERS](state, data) {
+    state.users = data;
+  },
+  [types.GET_MENUS](state, data) {
+    state.menus = data;
+  },
+  [types.DELETE_MENU](state, data) {
+    state.menus = data;
+  },
+  [types.UPDATE_MENU](state, data) {
+    state.menus = data;
+  },
+  [types.ADD_MENU](state, data) {
+    state.menus = data;
   }
 };
 
@@ -73,6 +90,29 @@ const myActions = {
   async [types.UPDATE_ADMIN]({ commit }, data) {
     let resp = await axios.post("admin/update", data);
     commit(types.UPDATE_ADMIN, resp.data.admins);
+  },
+  async [types.GET_ALL_USERS]({ commit }, data) {
+    let resp = await axios.get("admin/select_users");
+    commit(types.GET_ALL_USERS, resp.data.users);
+  },
+  //获取menu信息
+  async [types.GET_MENUS]({ commit }, data) {
+    let resp = await axios.get(`admin/menu/get_all/${data.type}`);
+    commit(types.GET_MENUS, resp.data.menus);
+  },
+  //删除menu
+  async [types.DELETE_MENU]({ commit }, data) {
+    let resp = await axios.get(`admin/menu/delete/${data.mid}`);
+    commit(types.DELETE_MENU, resp.data.menus);
+  },
+  //更新menu
+  async [types.UPDATE_MENU]({ commit }, data) {
+    let resp = await axios.post("admin/menu/update", data);
+    commit(types.UPDATE_MENU, resp.data.menus);
+  },
+  async [types.ADD_MENU]({ commit }, data) {
+    let resp = await axios.post("admin/menu/add", data);
+    commit(types.ADD_MENU, resp.data.menus);
   }
 };
 export default new Vuex.Store({
