@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min";
 
 Vue.config.productionTip = false;
+Vue.config.devtools = true;
 Vue.use(ElementUI);
 new Vue({
   router,

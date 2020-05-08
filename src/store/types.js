@@ -10,3 +10,7 @@ export const GET_MENUS = "getMenus";
 export const DELETE_MENU = "deleteMenu";
 export const UPDATE_MENU = "updateMenu";
 export const ADD_MENU = "updateMenu";
+export const GET_TABLES = "getTables";
+export const ADD_TABLE = "addTable";
+export const DELETE_TABLE = "deleteTable";
+export const UPDATE_TABLE = "updateTable";

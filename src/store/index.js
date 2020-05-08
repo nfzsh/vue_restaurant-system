@@ -16,7 +16,8 @@ const myStates = {
   },
   admins: [],
   users: [],
-  menus: []
+  menus: [],
+  tables: []
 };
 const myMutations = {
   [types.LOGIN](state, data) {
@@ -54,6 +55,18 @@ const myMutations = {
   },
   [types.ADD_MENU](state, data) {
     state.menus = data;
+  },
+  [types.GET_TABLES](state, data) {
+    state.tables = data;
+  },
+  [types.ADD_TABLE](state, data) {
+    state.tables = data;
+  },
+  [types.DELETE_TABLE](state, data) {
+    state.tables = data;
+  },
+  [types.UPDATE_TABLE](state, data) {
+    state.tables = data;
   }
 };
 
@@ -113,6 +126,23 @@ const myActions = {
   async [types.ADD_MENU]({ commit }, data) {
     let resp = await axios.post("admin/menu/add", data);
     commit(types.ADD_MENU, resp.data.menus);
+  },
+  //获取tables表信息
+  async [types.GET_TABLES]({ commit }, data) {
+    let resp = await axios.get("admin/table/select_all");
+    commit(types.GET_TABLES, resp.data.tables);
+  },
+  async [types.ADD_TABLE]({ commit }, data) {
+    let resp = await axios.post("admin/table/add", data);
+    commit(types.ADD_TABLE, resp.data.tables);
+  },
+  async [types.DELETE_TABLE]({ commit }, data) {
+    let resp = await axios.get(`admin/table/delete/${data.tid}`);
+    commit(types.DELETE_TABLE, resp.data.tables);
+  },
+  async [types.UPDATE_TABLE]({ commit }, data) {
+    let resp = await axios.post(`admin/table/update`, data);
+    commit(types.UPDATE_TABLE, resp.data.tables);
   }
 };
 export default new Vuex.Store({

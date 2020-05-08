@@ -12,7 +12,7 @@
     >
       <el-menu-item index="/admin/getall">账号管理</el-menu-item>
       <el-menu-item index="/admin/getuser">用户查看</el-menu-item>
-      <el-submenu index="2">
+      <el-submenu>
         <template slot="title">菜单管理</template>
         <el-menu-item index="/admin/menu/getmenus/0">主食</el-menu-item>
         <el-menu-item index="/admin/menu/getmenus/1">菜品</el-menu-item>
@@ -21,10 +21,8 @@
         <el-menu-item index="/admin/menu/getmenus/4">酒水</el-menu-item>
         <el-menu-item index="/admin/menu/add">添加...</el-menu-item>
       </el-submenu>
-      <el-menu-item index="3" disabled>消息中心</el-menu-item>
-      <el-menu-item index="4"
-        ><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item
-      >
+      <el-menu-item index="/admin/table">餐桌管理</el-menu-item>
+      <el-menu-item index="3">订单查看</el-menu-item>
     </el-menu>
   </div>
 </template>
