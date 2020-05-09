@@ -42,6 +42,18 @@ let adminRoutes = [
     props: true,
     path: "/admin/table",
     component: () => import("@/views/admin/table.vue")
+  },
+  {
+    props: true,
+    path: "/admin/bill",
+    component: () => import("@/views/admin/bill.vue")
+  }
+];
+let user2Routes = [
+  {
+    props: true,
+    path: "/user2/getList",
+    component: () => import("@/views/user2/getList.vue")
   }
 ];
 const user1Role = "bb63e5f7e0f2ffae845c";
@@ -53,12 +65,14 @@ export function updateRoutes() {
   switch (sessionStorage.getItem("role")) {
     case adminRole:
       router.addRoutes(adminRoutes);
+      router.push({ path: "/admin/getall" });
       break;
     case user1Role:
       // 前台的路由
       break;
     case user2Role:
-      // 后厨的路由
+      router.addRoutes(user2Routes);
+      router.push({ path: "/user2/getList" });
       break;
   }
 }

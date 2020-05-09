@@ -17,7 +17,10 @@ const myStates = {
   admins: [],
   users: [],
   menus: [],
-  tables: []
+  tables: [],
+  bills: [],
+  lists: [],
+  listByStatue: []
 };
 const myMutations = {
   [types.LOGIN](state, data) {
@@ -67,6 +70,18 @@ const myMutations = {
   },
   [types.UPDATE_TABLE](state, data) {
     state.tables = data;
+  },
+  [types.GET_BILLS](state, data) {
+    state.bills = data;
+  },
+  [types.GET_LISTS](state, data) {
+    state.lists = data;
+  },
+  [types.GET_LISTBYSTATUE](state, data) {
+    state.listByStatue = data;
+  },
+  [types.SET_LISTBYSTATUE](state, data) {
+    state.listByStatue = data;
   }
 };
 
@@ -143,6 +158,26 @@ const myActions = {
   async [types.UPDATE_TABLE]({ commit }, data) {
     let resp = await axios.post(`admin/table/update`, data);
     commit(types.UPDATE_TABLE, resp.data.tables);
+  },
+  //bills
+  async [types.GET_BILLS]({ commit }, data) {
+    let resp = await axios.get("admin/bill/getAll");
+    commit(types.GET_BILLS, resp.data.bills);
+  },
+  //lists
+  async [types.GET_LISTS]({ commit }, data) {
+    let resp = await axios.get(`admin/list/get/${data.bid}`);
+    commit(types.GET_LISTS, resp.data.lists);
+  },
+  //user2
+  async [types.GET_LISTBYSTATUE]({ commit }, data) {
+    let resp = await axios.get(`user2/getByStatue`);
+    commit(types.GET_LISTBYSTATUE, resp.data.lists);
+  },
+  async [types.SET_LISTBYSTATUE]({ commit }, data) {
+    let resp = await axios.get(`user2/setByStatue/${data.lid}/${data.statue}`);
+    console.log(data.statue);
+    commit(types.SET_LISTBYSTATUE, resp.data.lists);
   }
 };
 export default new Vuex.Store({

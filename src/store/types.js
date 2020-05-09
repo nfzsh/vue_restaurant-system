@@ -14,3 +14,7 @@ export const GET_TABLES = "getTables";
 export const ADD_TABLE = "addTable";
 export const DELETE_TABLE = "deleteTable";
 export const UPDATE_TABLE = "updateTable";
+export const GET_BILLS = "getBills";
+export const GET_LISTS = "getLists";
+export const GET_LISTBYSTATUE = "getListByStatue";
+export const SET_LISTBYSTATUE = "setListByStatue";
