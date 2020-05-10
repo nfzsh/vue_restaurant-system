@@ -20,7 +20,18 @@ const myStates = {
   tables: [],
   bills: [],
   lists: [],
-  listByStatue: []
+  listByStatue: [],
+  tableStatue: [],
+  tableStatueAll: [],
+  queue: [],
+  number: {
+    uid: null,
+    num: null
+  },
+  bill: {
+    id: null
+  },
+  list: []
 };
 const myMutations = {
   [types.LOGIN](state, data) {
@@ -82,6 +93,33 @@ const myMutations = {
   },
   [types.SET_LISTBYSTATUE](state, data) {
     state.listByStatue = data;
+  },
+  [types.GET_TABLESTATUE](state, data) {
+    state.tableStatue = data;
+  },
+  [types.GET_TABLENUM](state, data) {
+    state.tableStatueAll = data;
+  },
+  [types.GET_TABLEBYNUM](state, data) {
+    state.tables = data;
+  },
+  [types.KT](state, data) {
+    state.tables = data;
+  },
+  [types.GET_QUEUE](state, data) {
+    state.queue = data;
+  },
+  [types.ADD_QUEUE](state, data) {
+    state.number = data;
+  },
+  [types.ADD_BILL](state, data) {
+    state.bill = data;
+  },
+  [types.GET_LIST](state, data) {
+    state.list = data;
+  },
+  [types.PAY_BILL](state, data) {
+    state.tables = data;
   }
 };
 
@@ -178,6 +216,47 @@ const myActions = {
     let resp = await axios.get(`user2/setByStatue/${data.lid}/${data.statue}`);
     console.log(data.statue);
     commit(types.SET_LISTBYSTATUE, resp.data.lists);
+  },
+  //user1
+  async [types.GET_TABLESTATUE]({ commit }, data) {
+    let resp = await axios.get("user1/getTableNum");
+    commit(types.GET_TABLESTATUE, resp.data.tableNum);
+  },
+  async [types.GET_TABLENUM]({ commit }, data) {
+    let resp = await axios.get("user1/getTableNumAll");
+    commit(types.GET_TABLENUM, resp.data.tableNumAll);
+  },
+  async [types.GET_TABLEBYNUM]({ commit }, data) {
+    let resp = await axios.get(`user1/getTableByNum/${data.num}`);
+    commit(types.GET_TABLEBYNUM, resp.data.tables);
+  },
+  async [types.KT]({ commit }, data) {
+    let resp = await axios.get(`user1/updateStatue/${data.tid}`);
+    commit(types.KT, resp.data.tables);
+  },
+  async [types.GET_QUEUE]({ commit }, data) {
+    let resp = await axios.get(`user1/values/${data.tn}`);
+    commit(types.GET_QUEUE, resp.data.queue);
+  },
+  async [types.ADD_QUEUE]({ commit }, data) {
+    let resp = await axios.get(`user1/add/${data.tn}/${data.uid}`);
+    commit(types.ADD_QUEUE, resp.data.num);
+  },
+  async [types.DELETE_FIRST_QUEUE]({ commit }, data) {
+    let resp = await axios.get(`user1/delete/${data.tn}`);
+  },
+  //pay
+  async [types.ADD_BILL]({ commit }, data) {
+    let resp = await axios.get(`user1/addBill/${data.tid}`);
+    commit(types.ADD_BILL, resp.data.bill);
+  },
+  async [types.GET_LIST]({ commit }, data) {
+    let resp = await axios.get(`user1/getList/${data.tid}`);
+    commit(types.GET_LIST, resp.data.lists);
+  },
+  async [types.PAY_BILL]({ commit }, data) {
+    let resp = await axios.get(`user1/payBill/${data.bid}`);
+    commit(types.PAY_BILL, resp.data.lists);
   }
 };
 export default new Vuex.Store({

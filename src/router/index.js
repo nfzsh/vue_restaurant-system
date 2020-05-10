@@ -49,6 +49,25 @@ let adminRoutes = [
     component: () => import("@/views/admin/bill.vue")
   }
 ];
+let user1Routes = [
+  {
+    props: true,
+    path: "/user1/queue",
+    component: () => import("@/views/user1/pushlist.vue"),
+    children: [
+      {
+        props: true,
+        path: "add/:num",
+        component: () => import("@/views/user1/add.vue")
+      }
+    ]
+  },
+  {
+    props: true,
+    path: "/user1/pay",
+    component: () => import("@/views/user1/pay.vue")
+  }
+];
 let user2Routes = [
   {
     props: true,
@@ -69,6 +88,8 @@ export function updateRoutes() {
       break;
     case user1Role:
       // 前台的路由
+      router.addRoutes(user1Routes);
+      router.push({ path: "/user1/queue" });
       break;
     case user2Role:
       router.addRoutes(user2Routes);

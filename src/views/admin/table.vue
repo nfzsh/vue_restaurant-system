@@ -106,11 +106,13 @@ export default {
   },
   methods: {
     date: function(row, column) {
-      if (row.beginTime != null) return row.beginTime.replace("T", " ");
+      if (row.beginTime != null)
+        return row.beginTime.replace("T", " ").substring(0, 19);
       else return "";
     },
     date1: function(row, column) {
-      if (row.finishTime != null) return row.finishTime.replace("T", " ");
+      if (row.finishTime != null)
+        return row.finishTime.replace("T", " ").substring(0, 19);
       else return "";
     },
     deleteRow(index, rows) {
@@ -118,8 +120,6 @@ export default {
       rows.splice(index, 1);
     },
     update(index, rows) {
-      console.log(rows[index].id);
-      console.log("rows[index].id");
       this.table.id = rows[index].id;
       this.table.no = rows[index].no;
       this.table.num = rows[index].num;
@@ -139,9 +139,9 @@ export default {
       this.dialogFormVisible = false;
     },
     state: function(row, column) {
-      if (row.state == "0") {
+      if (row.statue == "0") {
         return "未使用";
-      } else if (row.state == "1") {
+      } else if (row.statue == "1") {
         return "正在使用";
       } else {
         return "未知";

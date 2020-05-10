@@ -24,6 +24,8 @@
       <el-menu-item index="/admin/table">餐桌管理</el-menu-item>
       <el-menu-item index="/admin/bill">订单查看</el-menu-item>
       <el-menu-item index="/user2/getList">点餐处理</el-menu-item>
+      <el-menu-item index="/user1/queue">队列状态</el-menu-item>
+      <el-menu-item index="/user1/pay">结算</el-menu-item>
     </el-menu>
   </div>
 </template>
