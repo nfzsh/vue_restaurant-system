@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="5" v-for="(m, index) in menus" :key="index" :offset="2">
         <el-card :body-style="{ padding: '0px' }">
-          <img :src="m.pic" class="image" />
+          <img v-bind:src="pic(m.pic)" class="image" />
           <div style="padding: 14px;">
             <div align="center" width="20">
               <div text-align="left" display:block>{{ m.name }}</div>
@@ -172,6 +172,10 @@ export default {
     }
   },
   methods: {
+    handleAvatarSuccess(res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw);
+      this.$alert("图片上传成功！");
+    },
     updateMenu(m) {
       this.dialogFormVisible = true;
       this.menu = JSON.parse(JSON.stringify(m));
@@ -183,9 +187,6 @@ export default {
       this.$store.dispatch(UPDATE_MENU, this.menu);
       this.dialogFormVisible = false;
     },
-    handleAvatarSuccess(res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw);
-    },
     beforeAvatarUpload(file) {
       const isLt50M = file.size / 1024 / 1024 < 50;
       if (!isLt50M) {
@@ -194,7 +195,10 @@ export default {
       return isLt50M;
     },
     upImg(id) {
-      return `/admin/menu/fileUpload/${id}`;
+      return `/api/admin/menu/fileUpload/${id}`;
+    },
+    pic(pic) {
+      return `/api/admin/menu/show/${pic}`;
     }
   }
 };
